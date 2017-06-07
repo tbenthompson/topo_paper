@@ -49,14 +49,6 @@ def solve_bem(surf, fault, fault_slip, should_plot = False):
 def build_greens_functions(surf, fault, fault_refine_size, basis_idx):
     gfs = []
 
-    #TODO: Here, I could find the two fault parallel vector directions by:
-    # -- dot product [1, 0, 0] and [0, 1, 0] with the normal to check that they aren't the same vector
-    # -- cross [1,0,0] with normal to find the first surface parallel direction
-    # -- cross surface parallel direction 1 with normal to get surface parallel direction 2.
-    # -- normalize everything.
-    # slip = np.array([[1, 0, 0]] * 3 * subfault[1].shape[0]).flatten()
-    # print(normal.dot(slip))
-
     if basis_idx is None:
         slip = np.zeros((1,3,3))
         slip[0,:,0] = 1

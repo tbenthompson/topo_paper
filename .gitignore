@@ -4,3 +4,4 @@ data
 *.swp
 .cache
 *__pycache__
+figs
