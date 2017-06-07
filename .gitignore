@@ -1,0 +1,6 @@
+# Ignore everything except .py files
+archive
+data
+*.swp
+.cache
+*__pycache__

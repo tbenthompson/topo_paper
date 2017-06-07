@@ -1,0 +1,21 @@
+getting gdal installed on ubuntu...
+-- sudo apt-get install python-gdal
+-- don't try to install it inside a virtualenv
+
+
+export CPLUS_INCLUDE_PATH=/usr/include/gdal
+export C_INCLUDE_PATH=/usr/include/gdal
+
+
+https://opendata.stackexchange.com/questions/195/is-there-an-open-api-for-world-terrain-data/7926#7926
+https://mapzen.com/documentation/terrain-tiles/data-sources/#what-is-sourced-at-what-zooms
+https://mapzen.com/documentation/terrain-tiles/use-service/
+
+https://github.com/tilezen/joerd/blob/master/docs/examples/collect.py
+
+workflow:
+-- use collect.py to gather initial .tif
+-- convert tif to latlon using gdal_warp
+-- use extract_chunk.py to get the particular rectangular region of data you want
+-- plot.py will plot this region if wanted.
+-- use to mesh to project to meters and build the meshes.

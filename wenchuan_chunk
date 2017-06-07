@@ -1,0 +1,14 @@
+SMALL BOX
+          lat      , lon
+lower_l = 29.361572, 98.207583
+upper_r = 33.579870, 106.743077
+
+command 
+
+./collect.py --zoom 10 --bounds 29.361572 98.207583 33.579870 106.743077 --mapzen_api_key mapzen-xXU7x7k smalllms.tif
+python plot.py smalllms.tif
+
+LARGE BOX
+          lat      , lon
+lower_l = 28.370585, 98.207583
+upper_r = 34.317300, 108.713678

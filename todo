@@ -1,0 +1,16 @@
+# set up the google slides and a basic outline
+
+#TODO:
+# -- set up the wenchuan model with real topo and fault geometry.
+
+#TODO:
+# -- check on the free_edge_constraints stuff for basin, seems a little sketchy in terms of dofs...
+# -- this green's function construction could go faster if i didn't reassemble the surface matrices for each green's function, then i would just need a bunch of solves.
+
+#TODO LATER:
+# -- Do the inversion in one step.
+# -- (maybe) do the inversion using the basis functions rather than the whole triangles.
+# -- figure out to reference data dir in a finalized python installation
+# -- CombinedMesh is handy even without multiple meshes, should i modify it or extend it so that it can be used more nicely for a single mesh situation (and has a better name!).
+# -- should i create a nicer mesh data structure? consisting of the vertex and tri arrays with some other nice tools
+
