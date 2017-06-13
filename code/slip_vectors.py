@@ -28,8 +28,8 @@ def test_slip_vec_harder():
         # vecs should be perpindicular to each other and the normal
         # and be normalized to unit length
         tri = np.random.rand(3,3)
-        n = tri_normal(tri, normalize = True)
         v1, v2 = get_slip_vectors(tri)
+        n = tri_normal(tri, normalize = True)
         np.testing.assert_almost_equal(np.linalg.norm(v1), 1.0)
         np.testing.assert_almost_equal(np.linalg.norm(v2), 1.0)
         np.testing.assert_almost_equal(v1.dot(v2), 0.0)
