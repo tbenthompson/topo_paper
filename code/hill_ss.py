@@ -13,8 +13,12 @@ def plot_model(x, y, z, fault, nx = 100, ny = 100):
         (x, y), z, (X, Y)
     )
     plt.figure(figsize = (10,10))
+
     cntf = plt.contourf(X, Y, Z)
-    plt.contour(X, Y, Z)
+    try:
+        plt.contour(X, Y, Z)
+    except ValueError:
+        pass
     plt.colorbar(cntf)
     plt.triplot(fault[0][:,0], fault[0][:,1], fault[1], linewidth = 1.5, color = 'r', zorder = 1000)
     plt.savefig('hill_ss_model.pdf')
@@ -39,17 +43,18 @@ def topo(x, y, flat):
 def make_surface(flat = False):
     wx = 100 * 1000
     wy = 100 * 1000
-    n = 41
+    n = 81
     surf_corners = [[-wx, -wy, 0], [-wx, wy, 0], [wx, wy, 0], [wx, -wy, 0]]
     surf = tectosaur.make_rect(n, n, surf_corners)
     surf[0][:,2] = topo(surf[0][:,0], surf[0][:,1], flat)
     return surf
 
 def make_fault():
-    fault_top_z = -4 * 1000
+    fault_top_z = -3 * 1000
     fault_bottom_z = -15 * 1000
     fault_length = 70 * 1000
-    fault_n = 5
+    fault_nx = int(fault_length / 2800)
+    fault_ny = int((fault_top_z - fault_bottom_z) / 2000)
 
     corners = [
         [-fault_length / 2, 0, fault_bottom_z],
@@ -57,7 +62,7 @@ def make_fault():
         [fault_length / 2, 0, fault_top_z],
         [-fault_length / 2, 0, fault_top_z],
     ]
-    fault = tectosaur.make_rect(fault_n, fault_n, corners)
+    fault = tectosaur.make_rect(fault_nx, fault_ny, corners)
     fault_slip = np.array([[1, 0, 0]] * 3 * fault[1].shape[0]).flatten()
     return fault, fault_slip
 
@@ -72,7 +77,7 @@ def main():
     for model in ['flat','hill']:
         surf = make_surface(model == 'flat')
         fault, fault_slip = make_fault()
-        plot_model(surf[0][:,0], surf[0][:,1], surf[0][:,2], fault)
+        # plot_model(surf[0][:,0], surf[0][:,1], surf[0][:,2], fault)
         np.save('data/' + model + '_ss_gfs.npy', build_tri_greens_functions(surf, fault, 500000))
 
 if __name__ == '__main__':
