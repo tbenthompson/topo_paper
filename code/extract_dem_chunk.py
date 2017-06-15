@@ -35,7 +35,7 @@ assert(gt[4] == 0)
 
 minlat, minlon = 24.5, 97
 maxlat, maxlon = 39.5, 111
-n = 41
+n = int(sys.argv[2])
 expand = 0
 lons = np.linspace(minlon - expand, maxlon + expand, n)
 lats = np.linspace(minlat - expand, maxlat + expand, n)
@@ -46,4 +46,4 @@ DEM = scipy.interpolate.griddata(
     (LON, LAT)
 )
 
-np.save('lonlatdem.npy', [LON, LAT, DEM])
+np.save('data/lonlatdem.npy', [LON, LAT, DEM])
