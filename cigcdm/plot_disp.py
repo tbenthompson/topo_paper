@@ -11,6 +11,8 @@ def interp_for_plotting(pts, vals):
     interp_vals = []
     for d in range(3):
         interp_vals.append(scipy.interpolate.griddata((pts[:,0], pts[:,1]), vals[:,d], (X, Y)))
+    interp_vals = np.array(interp_vals)
+    interp_vals[np.isnan(interp_vals)] = 0.0
     return X, Y, interp_vals
 
 def plot_disp(X, Y, interp_vals):
