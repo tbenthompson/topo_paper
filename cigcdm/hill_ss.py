@@ -2,8 +2,8 @@ import numpy as np
 import tectosaur
 import scipy.interpolate
 import matplotlib.pyplot as plt
-from solve import solve_bem
-from gf_builder import build_tri_greens_functions
+from cigcdm.solve import solve_bem
+from cigcdm.gf_builder import build_tri_greens_functions
 
 def plot_model(x, y, z, fault, nx = 100, ny = 100):
     x_new = np.linspace(np.min(x), np.max(x), nx)

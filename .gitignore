@@ -3,7 +3,9 @@ archive
 data
 *.swp
 .cache
+*.pyc
 *__pycache__
-figs
+talk_figs
 cache_tectosaur
 papers
+cigcdm.egg-info

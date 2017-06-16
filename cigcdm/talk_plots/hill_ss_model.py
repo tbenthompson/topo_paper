@@ -7,9 +7,9 @@ from cigcdm.hill_ss import topo
 
 hill_pts, slip_vecs, hill_gfs, hill_surf, fault = np.load('data/hill_ss/hill_ss_gfs.npy')
 
-x = np.linspace(-40, 40)
+x = np.linspace(-40000, 40000)
 y = 0 * x
-z = topo(x, y)
+z = topo(x, y, flat = False)
 
 plt.figure(figsize = (15, 3.5))
 ax = plt.gca()
@@ -17,11 +17,11 @@ ax.set_aspect('equal')
 triang = tri.Triangulation(fault[0][:,0] / 1000.0, fault[0][:,2] / 1000.0, fault[1])
 plt.triplot(triang)
 plt.xticks(np.linspace(-35.0, 35.0, 15))
-plt.yticks(np.linspace(-3.0, -15.0, 5))
-plt.ylim([-16, 0])
+plt.yticks(np.linspace(3.0, -15.0, 7))
+plt.ylim([-16, 3])
 plt.xlabel('$x$ (km)')
 plt.ylabel('$z$ (km)')
-plt.plot(x, z, 'k-')
+plt.plot(x / 1000, z / 1000, 'k-')
 ax.spines["top"].set_visible(False)
 ax.spines["bottom"].set_visible(False)
 ax.spines["right"].set_visible(False)

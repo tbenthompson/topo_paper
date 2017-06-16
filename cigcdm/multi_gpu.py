@@ -8,7 +8,7 @@ def get_gpu_platform():
         if 'CUDA' in p.name:
             cuda_platform_idx = i
             break
-    if cuda_platform_idx:
+    if cuda_platform_idx is None:
         raise Exception("No CUDA platform.")
     cuda_platform = platforms[cuda_platform_idx]
     return cuda_platform

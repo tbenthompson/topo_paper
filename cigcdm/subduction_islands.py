@@ -2,7 +2,8 @@ import numpy as np
 import tectosaur
 import scipy.interpolate
 import matplotlib.pyplot as plt
-from solve import solve_bem
+from cigcdm.solve import solve_bem
+from cigcdm.gf_builder import build_save_tri_greens_functions
 
 def plot_model(surf, fault, nx = 100, ny = 100):
     x_new = np.linspace(np.min(surf[0][:,0]), np.max(surf[0][:,0]), nx)
@@ -37,8 +38,7 @@ def plot_model(surf, fault, nx = 100, ny = 100):
     plt.savefig('subduction_abovesealevel.pdf')
     plt.show()
 
-no_topo = True
-island_centers = []#[[0,0]]
+island_centers = [[0,0]]
 island_height = 1000
 island_xradius = 0.9e5
 island_yradius = 5e4
@@ -56,11 +56,12 @@ fault_surface_intersection_y = ocean_edge
 fault_trench_creep_end = 15 * 1000
 fault_strike_width = 300 * 1000
 fault_dip_width = 250 * 1000
-fault_n = 30
+fault_nx = 3#int(fault_strike_width / 25000)
+fault_ny = 3#int(fault_dip_width / 25000)
 
-def topo(x, y):
+def topo(x, y, flat):
     z = np.zeros_like(x)
-    if no_topo:
+    if flat:
         return z
     z += mainland_elevation * (np.arctan((y - mainland_edge) / mainland_shallowness) / np.pi)
     z += ocean_elevation * (np.arctan((y - ocean_edge) / ocean_shallowness) / np.pi - 0.5)
@@ -71,10 +72,10 @@ def topo(x, y):
 
     return z
 
-def make_fault():
+def make_fault(flat):
     fault_dip_rad = np.deg2rad(fault_dip_deg)
 
-    trench_z = topo(-fault_strike_width / 2, fault_surface_intersection_y)
+    trench_z = topo(-fault_strike_width / 2, fault_surface_intersection_y, flat)
     upper_y = fault_surface_intersection_y + np.cos(fault_dip_rad) * fault_trench_creep_end
     upper_z = trench_z - np.sin(fault_dip_rad) * fault_trench_creep_end
     upper_west_corner = [-fault_strike_width / 2, upper_y, upper_z]
@@ -87,28 +88,38 @@ def make_fault():
 
     corners = np.array([bottom_west_corner, upper_west_corner, upper_east_corner, bottom_east_corner])
 
-    fault = tectosaur.make_rect(fault_n, fault_n, corners)
+    fault = tectosaur.make_rect(fault_nx, fault_ny, corners)
     fault_slip = np.array(
         [[0, -np.cos(fault_dip_rad), np.sin(fault_dip_rad)]] * 3 * fault[1].shape[0]
     ).flatten()
     return fault, fault_slip
 
-def make_surface():
+def make_surface(flat):
     wx = 1000 * 1000
     wy = 1000 * 1000
-    n = 121
+    n = 4
     surf_corners = [[-wx, -wy, 0], [-wx, wy, 0], [wx, wy, 0], [wx, -wy, 0]]
     surf = tectosaur.make_rect(n, n, surf_corners)
-    surf[0][:,2] = topo(surf[0][:,0], surf[0][:,1])
+    surf[0][:,2] = topo(surf[0][:,0], surf[0][:,1], flat)
     return surf
 
-def main():
-    surf = make_surface()
+def forward_model():
+    is_flat = False
+    surf = make_surface(is_flat)
     print(surf[1].shape)
-    fault, fault_slip = make_fault()
+    fault, fault_slip = make_fault(is_flat)
     plot_model(surf, fault)
     surf_pts, surf_disp = solve_bem(surf, fault, fault_slip, True)
     np.save('data/subduction_disp.npy', (surf_pts, surf_disp))
+
+def main():
+    # forward_model()
+    for model in ['flat']:#,'hill']:
+        is_flat = model == 'flat'
+        surf = make_surface(is_flat)
+        fault, _ = make_fault(is_flat)
+        fileroot = 'data/' + model + '_subduction_gfs'
+        build_save_tri_greens_functions(surf, fault, 500000000, fileroot)
 
 if __name__ == '__main__':
     main()
