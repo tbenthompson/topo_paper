@@ -14,6 +14,6 @@ def cleanup():
         p.kill()
 
 atexit.register(cleanup)
-
 for p in ps:
     p.wait()
+atexit.unregister(cleanup)

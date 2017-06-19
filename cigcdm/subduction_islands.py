@@ -56,8 +56,8 @@ fault_surface_intersection_y = ocean_edge
 fault_trench_creep_end = 15 * 1000
 fault_strike_width = 300 * 1000
 fault_dip_width = 250 * 1000
-fault_nx = 3#int(fault_strike_width / 25000)
-fault_ny = 3#int(fault_dip_width / 25000)
+fault_nx = int(fault_strike_width / 25000)
+fault_ny = int(fault_dip_width / 25000)
 
 def topo(x, y, flat):
     z = np.zeros_like(x)
@@ -97,7 +97,7 @@ def make_fault(flat):
 def make_surface(flat):
     wx = 1000 * 1000
     wy = 1000 * 1000
-    n = 4
+    n = 81
     surf_corners = [[-wx, -wy, 0], [-wx, wy, 0], [wx, wy, 0], [wx, -wy, 0]]
     surf = tectosaur.make_rect(n, n, surf_corners)
     surf[0][:,2] = topo(surf[0][:,0], surf[0][:,1], flat)
@@ -114,12 +114,12 @@ def forward_model():
 
 def main():
     # forward_model()
-    for model in ['flat']:#,'hill']:
+    for model in ['hill']:#['flat','hill']:
         is_flat = model == 'flat'
         surf = make_surface(is_flat)
         fault, _ = make_fault(is_flat)
         fileroot = 'data/' + model + '_subduction_gfs'
-        build_save_tri_greens_functions(surf, fault, 500000000, fileroot)
+        build_save_tri_greens_functions(surf, fault, 5000000, fileroot)
 
 if __name__ == '__main__':
     main()
