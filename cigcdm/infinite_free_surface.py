@@ -8,13 +8,13 @@ def plot_mesh(m):
     plt.figure()
     plt.triplot(m[0][:,0], m[0][:,1], m[1])
 
-w = 1e6
+w = 1e7
 n = 5
 
 corners = [[-w, -w, 0], [-w, w, 0], [w, w, 0], [w, -w, 0]]
 orig_surf = tectosaur.make_rect(n, n, corners)
 
-threshold = 1e3
+threshold = 1e4
 iters = 0
 max_iters = 100
 inner_ring = 100000.0

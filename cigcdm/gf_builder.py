@@ -41,17 +41,18 @@ def split(a, n):
     k, m = divmod(len(a), n)
     return (a[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n))
 
-
-proc_idx = int(sys.argv[1])
-n_procs = int(sys.argv[2])
 def build_greens_functions(surf, fault, fault_refine_size, basis_idx):
+    proc_idx = int(sys.argv[1])
+    n_procs = int(sys.argv[2])
     print("Building GFs in " + str(proc_idx) + "/" + str(n_procs))
-    try:
-        gpu_idx = proc_idx % how_many_gpus()
-        print('using gpu #' + str(gpu_idx))
-        use_gpu(gpu_idx)
-    except:
-        pass
+
+    if not gpu.gpu_initialized:
+        try:
+            gpu_idx = proc_idx % how_many_gpus()
+            print('using gpu #' + str(gpu_idx))
+            use_gpu(gpu_idx)
+        except:
+            pass
 
     indices = list(list(split(range(fault[1].shape[0]), n_procs))[proc_idx])
     print(indices)

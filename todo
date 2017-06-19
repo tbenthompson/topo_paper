@@ -1,28 +1,12 @@
-# make new ss/hill model
-# debug surface/fault intersection
-# do greens function with subduction model
-# set up the google slides and a basic outline
-
-#TODO:
-# -- set up the wenchuan model with real topo and fault geometry.
-
-#TODO:
-# -- check on the free_edge_constraints stuff for basin, seems a little sketchy in terms of dofs...
-# -- this green's function construction could go faster if i didn't reassemble the surface matrices for each green's function, then i would just need a bunch of solves.
+# Build GFs for the wenchuan model
+# Push everything into the slides so I know what I need to finish up.
+# Make edits to the vertical xsec fialko plot
+# add some noise to the inversion input.
+# Study the results of the subduction model
+# presentation!
 
 #TODO LATER:
 # -- Do the inversion in one step.
 # -- (maybe) do the inversion using the basis functions rather than the whole triangles.
-# -- figure out to reference data dir in a finalized python installation
-# -- CombinedMesh is handy even without multiple meshes, should i modify it or extend it so that it can be used more nicely for a single mesh situation (and has a better name!).
-# -- should i create a nicer mesh data structure? consisting of the vertex and tri arrays with some other nice tools
-# -- figure out to properly scale the vectors and variables involved to nondimensionalize and get the iterative residual to be reasonable and maintain reasonable matrix conditioning.
-
-
-# Surface-fault joining algorithm
-# a surface can be treated as locally 2d, so it can be easily delaunay triangulated. therefore:
-# 1) forget the local triangulation of the surface
-# 2) project the top of the fault onto the topography.
-# 3) add the fault top vertices to the surface vertices
-# 4) re-delaunay the local triangulation of the surface. 
-# 5) refine the triangulation until the triangles are reasonably sized.
+# -- ?
+# -- figure out the failure in the sphere model, run it! compare with an infinite free surface.
