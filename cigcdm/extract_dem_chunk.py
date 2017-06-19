@@ -33,8 +33,8 @@ lat = gt[3] + X * gt[4] + Y * gt[5]
 assert(gt[2] == 0)
 assert(gt[4] == 0)
 
-minlat, minlon = 24.5, 97
-maxlat, maxlon = 39.5, 111
+minlat, minlon = 27.5, 100
+maxlat, maxlon = 36.5, 108
 n = int(sys.argv[2])
 expand = 0
 lons = np.linspace(minlon - expand, maxlon + expand, n)

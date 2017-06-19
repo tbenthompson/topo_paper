@@ -3,7 +3,7 @@ import tectosaur
 import scipy.interpolate
 import matplotlib.pyplot as plt
 from cigcdm.solve import solve_bem
-from cigcdm.gf_builder import build_tri_greens_functions
+from cigcdm.gf_builder import build_save_tri_greens_functions
 
 def plot_model(x, y, z, fault, nx = 100, ny = 100):
     x_new = np.linspace(np.min(x), np.max(x), nx)
@@ -44,6 +44,7 @@ def make_surface(flat = False):
     wx = 100 * 1000
     wy = 100 * 1000
     n = 81
+    n = 201
     surf_corners = [[-wx, -wy, 0], [-wx, wy, 0], [wx, wy, 0], [wx, -wy, 0]]
     surf = tectosaur.make_rect(n, n, surf_corners)
     surf[0][:,2] = topo(surf[0][:,0], surf[0][:,1], flat)
@@ -55,6 +56,8 @@ def make_fault():
     fault_length = 70 * 1000
     fault_nx = int(fault_length / 2800)
     fault_ny = int((fault_top_z - fault_bottom_z) / 2000)
+    fault_nx = 40
+    fault_ny = 40
 
     corners = [
         [-fault_length / 2, 0, fault_bottom_z],
@@ -66,19 +69,19 @@ def make_fault():
     fault_slip = np.array([[1, 0, 0]] * 3 * fault[1].shape[0]).flatten()
     return fault, fault_slip
 
-def forward_model():
-    surf = make_surface(False)
+def forward_model(model):
+    surf = make_surface(model == 'flat')
     fault, fault_slip = make_fault()
     surf_pts, surf_disp = solve_bem(surf, fault, fault_slip, True)
-    np.save('data/hill_ss_disp.npy', (surf_pts, surf_disp))
-    return
+    np.save('data/' + model + '_ss_disp.npy', (surf_pts, surf_disp))
 
 def main():
     for model in ['flat','hill']:
-        surf = make_surface(model == 'flat')
-        fault, fault_slip = make_fault()
-        # plot_model(surf[0][:,0], surf[0][:,1], surf[0][:,2], fault)
-        np.save('data/' + model + '_ss_gfs.npy', build_tri_greens_functions(surf, fault, 500000))
+        forward_model(model)
+        # surf = make_surface(model == 'flat')
+        # fault, fault_slip = make_fault()
+        # # plot_model(surf[0][:,0], surf[0][:,1], surf[0][:,2], fault)
+        # np.save('data/' + model + '_ss_gfs.npy', build_tri_greens_functions(surf, fault, 500000))
 
 if __name__ == '__main__':
     main()

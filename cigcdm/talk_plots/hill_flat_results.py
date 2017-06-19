@@ -5,6 +5,19 @@ import matplotlib.tri as tri
 import matplotlib.cm as cm
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
+def get_vert_vals(fault, x):
+    vert_tris = [[] for i in range(fault[0].shape[0])]
+    for i in range(fault[1].shape[0]):
+        for d in range(3):
+            vert_tris[fault[1][i,d]].append(i)
+    vert_n_tris = [len(ts) for ts in vert_tris]
+    vert_vals = np.zeros(fault[0].shape[0])
+    for i in range(fault[1].shape[0]):
+        for d in range(3):
+            vert_vals[fault[1][i,d]] += x[i]
+    vert_vals /= vert_n_tris
+    return vert_vals
+
 def make_inversion_plot(x, name, slip_min, slip_max):
     # fault_tris = fault[0][fault[1]]
     # tri_centers = np.mean(fault_tris, axis = 1)
@@ -22,16 +35,7 @@ def make_inversion_plot(x, name, slip_min, slip_max):
     # plt.colorbar(cntf)
     # plt.show()
 
-    vert_tris = [[] for i in range(fault[0].shape[0])]
-    for i in range(fault[1].shape[0]):
-        for d in range(3):
-            vert_tris[fault[1][i,d]].append(i)
-    vert_n_tris = [len(ts) for ts in vert_tris]
-    vert_vals = np.zeros(fault[0].shape[0])
-    for i in range(fault[1].shape[0]):
-        for d in range(3):
-            vert_vals[fault[1][i,d]] += x[i]
-    vert_vals /= vert_n_tris
+    vert_vals = get_vert_vals(fault, x)
 
     triang = tri.Triangulation(fault[0][:,0] / 1000.0, fault[0][:,2] / 1000.0, fault[1])
     refiner = tri.UniformTriRefiner(triang)
@@ -71,10 +75,14 @@ def make_inversion_plot(x, name, slip_min, slip_max):
     plt.savefig(name + '_inversion_result.pdf')
     # plt.show()
 
-reg_param = 0.03125
-xs = np.load('data/hill_ss/hill_flat_inversion_' + str(reg_param) + '.npy')
-flat_pts, slip_vecs, flat_gfs, flat_surf, fault = np.load('data/hill_ss/flat_ss_gfs.npy')
-make_inversion_plot(-xs[0][1::2], 'flat_ss', 0, 4.5)
-make_inversion_plot(-xs[0][0::2], 'flat_ds', -0.9, 0.9)
-make_inversion_plot(-xs[1][1::2], 'hill_ss', 0, 4.5)
-make_inversion_plot(-xs[1][0::2], 'hill_ds', -0.9, 0.9)
+def main():
+    reg_param = 0.03125
+    xs = np.load('data/hill_ss/hill_flat_inversion_' + str(reg_param) + '.npy')
+    flat_pts, slip_vecs, flat_gfs, flat_surf, fault = np.load('data/hill_ss/flat_ss_gfs.npy')
+    make_inversion_plot(-xs[0][1::2], 'flat_ss', 0, 4.5)
+    make_inversion_plot(-xs[0][0::2], 'flat_ds', -0.9, 0.9)
+    make_inversion_plot(-xs[1][1::2], 'hill_ss', 0, 4.5)
+    make_inversion_plot(-xs[1][0::2], 'hill_ds', -0.9, 0.9)
+
+if __name__ == '__main__':
+    main()

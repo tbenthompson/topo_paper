@@ -64,7 +64,7 @@ def main():
         )
         full_slip = np.concatenate([s[:,:,np.newaxis] for s in refined_slip], 2)
         # print(fault_refined[1].shape[0])
-        surf = np.load('data/wenchuan/high_res/utm_surf_mesh.npy')
+        surf = np.load('data/wenchuan/narrow/utm_surf_mesh.npy')
         if flat:
             surf[0][:,2] = 0
         # plot_3d_model(surf, fault)

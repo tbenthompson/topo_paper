@@ -11,7 +11,7 @@ def main():
     np.testing.assert_almost_equal(pts[:,0], pts2[:,0])
     np.testing.assert_almost_equal(pts[:,1], pts2[:,1])
     X, Y, interp_vals = interp_for_plotting(pts, disp1 - disp2)
-    plot_disp(X, Y, interp_vals)
+    plot_disp(X, Y, interp_vals, filename_prefix = 'diff')
 
 if __name__ == '__main__':
     main()
