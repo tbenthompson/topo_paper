@@ -3,9 +3,9 @@ import numpy as np
 import scipy.interpolate
 import matplotlib.pyplot as plt
 
-def interp_for_plotting(pts, vals):
-    xs = np.linspace(np.min(pts[:,0]), np.max(pts[:,0]), 500)[1:-1]
-    ys = np.linspace(np.min(pts[:,1]), np.max(pts[:,1]), 500)[1:-1]
+def interp_for_plotting(pts, vals, nx = 500, ny = 500):
+    xs = np.linspace(np.min(pts[:,0]), np.max(pts[:,0]), nx)[1:-1]
+    ys = np.linspace(np.min(pts[:,1]), np.max(pts[:,1]), ny)[1:-1]
     X,Y = np.meshgrid(xs, ys)
 
     interp_vals = []

@@ -1,12 +1,16 @@
-# Build GFs for the wenchuan model
-# Push everything into the slides so I know what I need to finish up.
-# Make edits to the vertical xsec fialko plot
-# add some noise to the inversion input.
-# Study the results of the subduction model
-# presentation!
+# add fault slip arrows to hill/ss model figure?
+# add fault location to the hill/ss forward model figures??
+# -- diff w/ log-scaled contours (0.01m, 0.1m, 1.0m)
+#
+# shaded relief maps with fault locations for Bam, Landers, Hector Mine, Izmit
+# --for topo sensation, just use screenshots of tangrams: https://mapzen.com/blog/mapping-mountains/
+#
+# Wenchuan inversion
 
 #TODO LATER:
+# add some noise to the inversion input.
 # -- Do the inversion in one step.
 # -- (maybe) do the inversion using the basis functions rather than the whole triangles.
 # -- ?
 # -- figure out the failure in the sphere model, run it! compare with an infinite free surface.
+# mayavi in python3: https://github.com/enthought/mayavi/issues/84

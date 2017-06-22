@@ -5,16 +5,16 @@ import matplotlib.tri as tri
 import matplotlib.cm as cm
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-def get_vert_vals(fault, x):
-    vert_tris = [[] for i in range(fault[0].shape[0])]
-    for i in range(fault[1].shape[0]):
+def get_vert_vals(m, x):
+    vert_tris = [[] for i in range(m[0].shape[0])]
+    for i in range(m[1].shape[0]):
         for d in range(3):
-            vert_tris[fault[1][i,d]].append(i)
+            vert_tris[m[1][i,d]].append(i)
     vert_n_tris = [len(ts) for ts in vert_tris]
-    vert_vals = np.zeros(fault[0].shape[0])
-    for i in range(fault[1].shape[0]):
+    vert_vals = np.zeros(m[0].shape[0])
+    for i in range(m[1].shape[0]):
         for d in range(3):
-            vert_vals[fault[1][i,d]] += x[i]
+            vert_vals[m[1][i,d]] += x[i]
     vert_vals /= vert_n_tris
     return vert_vals
 
