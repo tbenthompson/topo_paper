@@ -1,10 +1,8 @@
-# add fault slip arrows to hill/ss model figure?
-# add fault location to the hill/ss forward model figures??
-# -- diff w/ log-scaled contours (0.01m, 0.1m, 1.0m)
-#
 # shaded relief maps with fault locations for Bam, Landers, Hector Mine, Izmit
 # --for topo sensation, just use screenshots of tangrams: https://mapzen.com/blog/mapping-mountains/
 #
+# Wenchuan model description figures
+# Wenchuan forward
 # Wenchuan inversion
 
 #TODO LATER:
