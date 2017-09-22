@@ -1,0 +1,6 @@
+to use mpi4py.futures, I just needed to launch kernels with mpiexec
+to do that, I needed to create a new kernelspec for jupyter
+the kernelspecs are located in pythoninstalldir/share/jupyter/kernels/
+and can be listed with "jupyter kernelspec list"
+copy the python# directory to python#mpi
+then edit the kernel.json file and add "mpiexec" in the argv list before "python"

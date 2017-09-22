@@ -9,3 +9,6 @@ talk_figs
 cache_tectosaur
 papers
 cigcdm.egg-info
+.ipynb_checkpoints
+*.pdf
+*.npy

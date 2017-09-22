@@ -1,5 +1,5 @@
 import numpy as np
-from tectosaur.geometry import tri_normal
+from tectosaur.util.geometry import tri_normal
 
 def get_slip_vectors(tri):
     n = tri_normal(tri, normalize = True)

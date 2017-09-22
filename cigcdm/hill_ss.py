@@ -3,7 +3,9 @@ import tectosaur
 import scipy.interpolate
 import matplotlib.pyplot as plt
 from cigcdm.solve import solve_bem
-from cigcdm.gf_builder import build_save_tri_greens_functions
+# from cigcdm.gf_builder import build_save_tri_greens_functions
+from tectosaur.mesh.mesh_gen import make_rect
+from tectosaur_topo import solve_topo
 
 def plot_model(x, y, z, fault, nx = 100, ny = 100):
     x_new = np.linspace(np.min(x), np.max(x), nx)
@@ -46,7 +48,7 @@ def make_surface(flat = False):
     n = 81
     n = 201
     surf_corners = [[-wx, -wy, 0], [-wx, wy, 0], [wx, wy, 0], [wx, -wy, 0]]
-    surf = tectosaur.make_rect(n, n, surf_corners)
+    surf = make_rect(n, n, surf_corners)
     surf[0][:,2] = topo(surf[0][:,0], surf[0][:,1], flat)
     return surf
 
@@ -65,14 +67,15 @@ def make_fault():
         [fault_length / 2, 0, fault_top_z],
         [-fault_length / 2, 0, fault_top_z],
     ]
-    fault = tectosaur.make_rect(fault_nx, fault_ny, corners)
+    fault = make_rect(fault_nx, fault_ny, corners)
     fault_slip = np.array([[1, 0, 0]] * 3 * fault[1].shape[0]).flatten()
     return fault, fault_slip
 
 def forward_model(model):
     surf = make_surface(model == 'flat')
     fault, fault_slip = make_fault()
-    surf_pts, surf_disp = solve_bem(surf, fault, fault_slip, True)
+    # surf_pts, surf_disp = solve_bem(surf, fault, fault_slip, True)
+    surf_pts, surf_disp, soln = solve_topo(surf, fault, fault_slip, 1.0, 0.25)
     np.save('data/' + model + '_ss_disp.npy', (surf_pts, surf_disp))
 
 def main():

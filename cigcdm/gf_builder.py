@@ -1,10 +1,11 @@
+import os
 import sys
 import numpy as np
-import tectosaur
+from tectosaur.mesh.refine import refine_to_size
 import tectosaur.util.gpu as gpu
 from cigcdm.slip_vectors import get_slip_vectors
-from cigcdm.solve import solve_bem
 from cigcdm.multi_gpu import how_many_gpus, use_gpu
+from tectosaur_topo import solve_topo
 
 def make_tri_greens_functions(surf, fault, fault_refine_size, basis_idx, i):
     gfs = []
@@ -21,7 +22,7 @@ def make_tri_greens_functions(surf, fault, fault_refine_size, basis_idx, i):
         else:
             slip[0,basis_idx,:] = s
 
-        subfault, refined_slip = tectosaur.refine_to_size(
+        subfault, refined_slip = refine_to_size(
             subfault_unrefined, fault_refine_size,
             [slip[:,:,0], slip[:,:,1], slip[:,:,2]]
         )
@@ -30,7 +31,7 @@ def make_tri_greens_functions(surf, fault, fault_refine_size, basis_idx, i):
             ' with ' + str(subfault[1].shape[0]) + ' subtris.'
         )
         full_slip = np.concatenate([s[:,:,np.newaxis] for s in refined_slip], 2)
-        result = solve_bem(surf, subfault, full_slip.flatten())
+        result = solve_topo(surf, subfault, full_slip.flatten(), 1.0, 0.25)
         surf_pts = result[0]
         slip_vecs.append(slip[0,:,:])
         gfs.append(result[1])
@@ -41,18 +42,8 @@ def split(a, n):
     k, m = divmod(len(a), n)
     return (a[i * k + min(i, m):(i + 1) * k + min(i + 1, m)] for i in range(n))
 
-def build_greens_functions(surf, fault, fault_refine_size, basis_idx):
-    proc_idx = int(sys.argv[1])
-    n_procs = int(sys.argv[2])
+def build_greens_functions(surf, fault, fault_refine_size, basis_idx, proc_idx, n_procs):
     print("Building GFs in " + str(proc_idx) + "/" + str(n_procs))
-
-    if not gpu.gpu_initialized:
-        try:
-            gpu_idx = proc_idx % how_many_gpus()
-            print('using gpu #' + str(gpu_idx))
-            use_gpu(gpu_idx)
-        except:
-            pass
 
     indices = list(list(split(range(fault[1].shape[0]), n_procs))[proc_idx])
     print(indices)
@@ -66,10 +57,18 @@ def build_greens_functions(surf, fault, fault_refine_size, basis_idx):
     gfs = np.array([r[2] for r in results]).reshape((-1, surf_pts.shape[0], 3))
     return surf_pts, slip_vecs, gfs, indices
 
-def build_save_tri_greens_functions(surf, fault, fault_refine_size, fileroot):
-    surf_pts, slip_vecs, gfs, indices = build_greens_functions(surf, fault, fault_refine_size, None)
-    filename = fileroot + str(proc_idx) + '.npy'
-    np.save(filename, (surf_pts, slip_vecs, gfs, surf, fault, indices))
+def combine_gfs(fault, gf_results):
+    surf_pts = gf_results[0][0]
+    slip_vecs = np.empty((fault[1].shape[0] * 2, 3, 3))
+    gfs = np.empty((fault[1].shape[0] * 2, surf_pts.shape[0], 3))
+    for i in range(len(gf_results)):
+        _, chunk_slip_vecs, chunk_gfs, chunk_indices = gf_results[i]
+        gf_indices = np.tile((2 * np.array(chunk_indices))[:,np.newaxis], (1,2))
+        gf_indices[:,1] += 1
+        gf_indices = gf_indices.flatten()
+        slip_vecs[gf_indices] = chunk_slip_vecs
+        gfs[gf_indices] = chunk_gfs
+    return surf_pts, slip_vecs, gfs
 
 # def build_basis_greens_functions(surf, fault, fault_refine_size):
 #     surf_pts, slip_vecs0, gfs0 = build_greens_functions(surf, fault, fault_refine_size, 0)
