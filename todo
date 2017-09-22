@@ -1,14 +1,28 @@
-# shaded relief maps with fault locations for Bam, Landers, Hector Mine, Izmit
-# --for topo sensation, just use screenshots of tangrams: https://mapzen.com/blog/mapping-mountains/
+# Do a little simulation-based proof of the idea that inverse errors are bounded by the condition number. Just correlate them.
 #
-# Wenchuan model description figures
-# Wenchuan forward
-# Wenchuan inversion
-
+# bssa 1993, landers, by hudnut, this should have data for the landers earthquake
+# thoughts about wenchuan:
+# -- there's no shallow slip deficit
+# -- there's high resolution data on the footwall, but not the hanging wall
+# -- there should be huge topographic effects
+# -- the rake changes a lot along strike, particularly near the break in steep topography
+#
+# paper should have a double focus:
+# 1) on topography
+# 2) on general model errors and how they much more insidious and difficult than data errors
+#   -- https://www2.warwick.ac.uk/fac/sci/maths/research/events/2014-15/nonsymposium/bmip/somersalolecture1.pdf
+#   -- Erkki Somersalo seems to have cool info on inverse problems
+#   -- I should read more about inverse problems in general though.
+#   -- also the inverse error paper: https://people.eecs.berkeley.edu/~elghaoui/Pubs/InvErr_LAA02
+#       has some good thoughts on improvements over the condition number in terms of what influence it has on inversion errors and model uncertainty
+#
+#
+#
 #TODO LATER:
+# -- figure out to properly scale the vectors and variables involved to nondimensionalize and get the iterative residual to be reasonable and maintain reasonable matrix conditioning ===> write out the linear system with the nondimensionalization included. this should actually done by the solver tools, not in tectosaur proper.
 # add some noise to the inversion input.
 # -- Do the inversion in one step.
 # -- (maybe) do the inversion using the basis functions rather than the whole triangles.
-# -- ?
 # -- figure out the failure in the sphere model, run it! compare with an infinite free surface.
 # mayavi in python3: https://github.com/enthought/mayavi/issues/84
+# -- the green's function construction could go faster if i didn't reassemble the surface matrices for each green's function, then i would just need a bunch of solves.

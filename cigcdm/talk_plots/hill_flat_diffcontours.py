@@ -27,10 +27,10 @@ for d in range(2):
     dimname = ['x', 'y', 'z'][d]
     test = False
 
-    field = (np.abs(hill_disp[:,d] - flat_disp[:,d]) / 0.2) * 100
+    field = np.abs(hill_disp[:,d] - flat_disp[:,d])
 
     cmap = cm.get_cmap(name='hot_r')
-    levels = [0, 1, 2, 4, 8, 16, 32]
+    levels = np.array([0, 1, 2, 4, 8, 16, 32]) / 100 * 0.2
 
     subdiv = 2
 
@@ -59,9 +59,9 @@ for d in range(2):
         divider = make_axes_locatable(ax)
         cax = divider.append_axes("right", size="5%", pad=0.5)
         cbar = plt.colorbar(cntf, cax = cax)
-        cbar.set_label('\% difference $u_' + dimname + '$')
+        cbar.set_label('difference (m)')
         cbar.set_ticks(levels[::1])
-        cbar.set_ticklabels(['{:.0f}%'.format(l) for l in levels[::1]])
+        cbar.set_ticklabels(['{:.3f}'.format(l) for l in levels[::1]])
 
 plt.savefig('hill_flat_diffcontours_uxy.pdf', bbox_inches = 'tight')
 plt.show()
