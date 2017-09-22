@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-from cigcdm.plot_disp import interp_for_plotting
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.tri as tri
 import matplotlib.cm as cm
@@ -17,7 +16,6 @@ d = 0
 dimname = ['x', 'y', 'z'][d]
 
 fields = [hill_disp[:,d], flat_disp[:,d], hill_disp[:,d] - flat_disp[:,d]]
-field_names = ['flat', 'hill', 'diff']
 vmin = [-0.2, -0.2, -0.05]
 vmax = [0.2, 0.2, 0.05]
 

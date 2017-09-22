@@ -46,6 +46,7 @@ def get_fault_slip(fault):
     vertical = np.array([0,0,1])
     for i in range(n_tris):
         tri = fault[0][fault[1][i,:]]
+        #TODO: THIS IS WRONG!
         s = projection(vertical, tri_normal(tri, normalize = True))
         # v1, v2 = get_slip_vectors(tri)
         fault_slip[i] = s
@@ -56,6 +57,7 @@ def main():
     for flat in [False, True]:
         fault = np.load('data/wenchuan/planar_utm_fault_mesh.npy')
         fault[0][:,2] = np.where(fault[0][:,2] > 0, fault[0][:,2] - 5000, fault[0][:,2])
+        import ipdb; ipdb.set_trace()
         print(np.max(fault[0][:,2]))
         slip = get_fault_slip(fault)
         fault_refined, refined_slip = tectosaur.refine_to_size(
