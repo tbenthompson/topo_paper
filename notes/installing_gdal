@@ -1,1 +1,19 @@
+just use conda-forge!
+
+OLD
+OLD
+OLD
+OLD
+on ubunutu:
 sudo apt-get install libgdal20 libgdal-dev python3-gdal
+
+in a virtual env or on centos7 (meade03):
+install gdal and the gdal-dev libraries globally (on centos7 use yumdownloader --resolve gdal gdal-devel)
+
+make sure the python gdal version and library/binary versions match
+https://gist.github.com/cspanring/5680334
+
+pip download gdal=1.11.2
+tar -xvf ...
+cd ...
+python setup.py build_ext --include-dirs=/home/tthompson/tools/usr/include/gdal
