@@ -47,10 +47,13 @@ def build_greens_functions(surf, fault, fault_refine_size, basis_idx, proc_idx, 
 
     indices = list(list(split(range(fault[1].shape[0]), n_procs))[proc_idx])
     print(indices)
-    results = [
-        make_tri_greens_functions(surf, fault, fault_refine_size, basis_idx, i)
-        for i in indices
-    ]
+    results = []
+    for i in indices:
+        how_many_done = i - indices[0]
+        print('Percent progress: ' + str((float(how_many_done) / len(indices)) * 100))
+        results.append(
+            make_tri_greens_functions(surf, fault, fault_refine_size, basis_idx, i)
+        )
 
     surf_pts = results[0][0]
     slip_vecs = np.array([r[1] for r in results]).reshape((-1, 3, 3))
