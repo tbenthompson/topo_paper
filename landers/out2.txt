@@ -1,0 +1,50 @@
+_
+o618   34.82S3  -1l8.8681  llll  HPGNCALIFSTAObl8         EW9Sq6         HPGN    2   B  SIO/SCEC      SCEC2      2   g  s_o/scEc
+o7o4   34.q_2  -1la.54uo   357  HPGNcALlFsTno7-_         EW9_8         HPGN     2   B  sIo/scEc      scEc2      2   B  s_o/scEc
+o7as   34.4928  -117.76so  lo62  HPGNcALIFsTAn7-o5         Ev9204          HPGN    2   B  sIo/scEc      scEc2      2   B  slo/scEc
+o8o3   35.o719  -_I6.4a47   5_  HPGN 08-3 l99l              _l609          HPGN     2   B  SI0/SCEC      SCEc2      2   B  s Io/scEc
+o8o5   3s.oo72  - _ l7.5292   1S5  HPGN C8-S GPS K_MER I99O      ETl6lO          HPGN     2   B  SIO/SCEC      SCEC2      2   B  s Io/scEc
+o8o6   3s.3661  -117.6142  lla3  HiGNo8-6l_l              _l6ll          H_N     2   B  slo/scEc      scEc2      2   B  s Io/scEc
+o_o8   34.7_8  _1ls._33l   76l  HPC_N08_8 1991              EU1246         _PGY     2   B  SIO/SCEC      SCEC2      2   B  sIo/scEc
+o8l8   34+0222  -1l7.lo42   637  HPGYCALmSTA08-l8         EV9292a.k.a.U6023_   HPGY     2   B  SIO/SCEC/STAN  SCECl      2   B  slo/SCEc/sTAN
+o8I9   33.8842  -ll7.5475   206  HPGN 08-l9 l_l             DXS289 a.k.a. ''6075''  HPGN     2   B  SIO/SCEC      SCEC2      2   B  Slo/SCEc
+o_21   33.s61q  -116.57O6  l5l9  HPCNo8-2lsAhlTARosAl991     DX52go         HPGN     2   B  slo/scEc      scEc2      2   B  s_o/scEc
+1lo6   32.84_  -116.8o19   424  niGNcnll-_l99o           Dc2l_         H_N     2   B  s Io/scEc      scEc2      2   B  slo/scEc
+_ __   33. .12g4  _ l 17._69   95  HPGN cALIF ll_o7 l99o         Dx5291         HPGN    2   B  sIo/scEc      scEc2      2   B  slo/scEc
+( lo8   33.2339  -ll6.6933   874  HPGN CA ll-08 l990           DX5292         HPGY     2   B  SIO/SCEC      SCEC2      2   B  s_o/scEc
+1lo9   33.1s97  -ll6+2469   234  HiGN cALIF l l-O9 l_         Dx5293         HPGN     2   B  sIo/scEc      scEc2      2   B  s_o/scEc
+7_ 12   33.2s72  -l 14.sl22   179  _PGN CALIF ll-l2 l990         DW_6         HPGN     2   B  SIO/SCEC      SCEc2      2   B  sIo/scEc
+1 _ _3   33.6772  -llS.9_39   507  HPGN CNI_ _ll-l3 l_         DW9O77         HPGY     2   B  SIO/SCEC      SCEC2      2   B  s Io/scEc
+11 (q   33.68o8  _1 15.243l   2l6  HPGN CALIF l l-l4 l99O         DW9018         HPGN     2   B  SIO/SCEC      SCEc2      2   B  s_o/scEc
+6o5o   3a.2660  -ll6.3340   834  2838 l9 _R l9J2                         SBCO     l   D  STAN/SCEC    STAN/STo    2   B  sTAN/scEc
+6uS2   34.5l60  -ll6.8400   922  AT5NRIES14S15s23St4m22l9_  _V_83          SBCO     l   D  STAN/SCEC    STAN/SIo    2   y  sTAN/scEc
+6o54   34.2040  -ll6.4420  IO62  BM 705-30 l968                           SBCO     l   D  STAN/SCEC    STANJslo    2   B  sTAN/scEc
+6oS6   34.31OO  -ll6.6470   942  Q120 19_                 EV2796          SBCO     l   D  STANJSCEC    STAN/SIO    2   B  sTAN/scEc
+60s8   34._oo  - l l6.585o   779  lNAv _ l99o                            sBco     l   D  _AN/scEc    sTAN/slo    2   B  sTAN/scEc
+6o6o   34.l3se  _I16.3292   869  S l265 l976                EV3S03          S_CO     l   D  STAN/SCEC    STnN/sTo    2   B  sTAy/scEc
+7OOO   34.__O  -tl6.7l60  Il79  T1NR3ESl9S30l9l9                       SBCO     t   D  STAN/SCEC    UCLA/STAN   2   B  sTnN/scEc
+7ool   34.56OO  -ll6._690   803  SCT6NK5ES32S33lYl9                     SBCO     l   D  STA/SCEC     UCLA/sTAN   2   B  sTAN/scEc
+7OO2   34.3670  -ll6.4O4O   74S  BLM 1957                              SBCO     1   D  STAN/SCEC    STAN/Slo    2   B  sTAN/s_c
+7oi   34.7oSO  -ll6.22SO   62_  nNR7ELS3579                          SBCO     l   D  STAN/SCEC    STnN/Slo    2   B  sTAN/scEc
+nmBo  34.5586  -l l5.7422   l9S  AMBOY l934               EU0992 a.k.a. ^7OO5"  SBCO     l   D  STAN/SCEC    STAN/SI0    2   B  sTAN/scEc
+nN2A  33.5560  -tl6.66l8  1I96  AN_(3-DuMtam_d)                       HPGN     2   B  SlO/SCEC      SCEC2      2   B  S_o/SCEc
+BEAR   34_264O  - l l6.8840  20SO  BIG BEAR l991              a.k.a. "60O2"       ClT      2   C  ClT/SCEC      SCECl      2   c  c_T/scEc
+BLAC   33.66A0  -tl5.7200   523  BlACKBU_EmCMN1982(stacian    DW90O2         ClT      2   C  CIT/SCEC      SCEcl      a   c  cIT/scEc
+#7269)
+BREN   34.Ol90  -l 17.I390   6Y7  BRINK 2 l967               EV3594         USGS     2   B  USGS        USGS      2   B  usGs/sTAN
+cABA  33.9ls9  -ll6,775S   530  CABAZON(3-Duns_am_d)                     clT      2   C  CIT/SCEC      scEC1      2   c  c_T/scEc
+cAlo   34.3470  _ l l7.45lO  l34l  CAJON l934               EV36_ a._.a. ~6Ol3''  USG_     2   B  USGS        USGS      2   g  usGs/sTAN
+cHn_   34.1538  -l 17.3089   523  CHAPA_AL l928 l970         EV36l9 8.k.a. ''6OI l''  ClT      2   C  CIT/SCEC      SCECl      2   c  cTT/scEc
+c_R   34.O028  -ll6.9518  ll39  CHERRY(3-Dunsc_m_d)                      ClT      2   C  CIT/SCEC      SCECl      2   c  cTT/scEc
+cocH  33.74o3  -ll6.ls83   66  coACH l93l               Dxo71l         clT      2   c  clT/scEc      scEcL      2   c  c_T/scEc
+cRAF   _.06l4  -l l7.0855   938  CR._ON l929 1972           EV3I73 a.k.a. "6O04''  ClT      2   C  CIT/SCEC      SCECl      2   c  c_T/scEc
+cRIs   34.O442  -ll5.2183   456  CRISS f973                EUll38         HPGN     2   B  SIO/SCEC      SCEC2      2   B  slo/scEc
+DnsH   J3.63S6  -Il7.OY6l   462  DASH l972                DX3756         HPGY    2   B  SIO/SCEC      SCEC2      2   B  s_o/scEc
+Dum_  34.7930  -l l6,6630   66S  T8N R3E l9l7               8.k.a. U7OO9"       SBCO     l   D  STAN/SCEC    STAN/Slo    2   B  sTAN/scEc
+Euom  J3-87_  _Il6.43OO   488  EDOM2l974NCER                        USGS     2   B  USGS        USGS      2   B  usGs
+ENDD  3Q.044l  -llq._814   l33  END l93S                 EUo986         CIT      2   C  CIT/SCEC      ClT/SCEC2   2   c  c_T/scEc
+_Ai   33.7470  _ll6.l740   32                       a.k.a. "GAP_       USGS     2   B  USGS        USGS      2   g  usGs
+GARN  33.8978  -tl6.5377   27S  GARNET l919              DXSl04         C_T      2   C  CIT/SCEC     SCECl      2   c  c_T/scEc
+GoDqv  34. l846  -l 15.93l5   S37  GODW_ 1965              EUO440 a.k.a. ''6069''  HPGN     2   B  SIO/SCEC/STAN  SC_Cl      2   B  s_o/scEc/sTAN
+GoLD  35.4250  -l l6.8890  lOl7  GOLDSTONE DSN (stamping unknown)               PGGA     3   A  SlO         PGGA      3   A  slo
+HEcT   34.7850  _l l6-42IO   625  HECCOR 2 l966              EV3968 a.k.a. ''7008''  HPGN    2   B  SIO/SCEC/STAN  _C_Cl      2   B  s_o/scEc/sTAN
