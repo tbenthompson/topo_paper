@@ -3,8 +3,7 @@ import sys
 import numpy as np
 from tectosaur.mesh.refine import refine_to_size
 import tectosaur.util.gpu as gpu
-from cigcdm.slip_vectors import get_slip_vectors
-from cigcdm.multi_gpu import how_many_gpus, use_gpu
+from slip_vectors import get_slip_vectors
 from tectosaur_topo import solve_topo
 
 def make_tri_greens_functions(surf, fault, fault_refine_size, basis_idx, i):
