@@ -44,7 +44,7 @@ def get_dem(zoom, bounds, n_width, dest_dir = 'dem_download'):
     )
     return LON.flatten(), LAT.flatten(), DEM.flatten()
 
-def project(lon, lat, dem, proj_name):
+def project(inx, iny, dem, proj_name, inverse = False):
     wgs84 = pyproj.Proj('+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
     if proj_name == 'ellps':
         proj = pyproj.Proj('+proj=geocent +datum=WGS84 +units=m +no_defs')
@@ -52,6 +52,9 @@ def project(lon, lat, dem, proj_name):
         zone = proj_name[3:]
         print(zone)
         proj = pyproj.Proj("+proj=utm +zone=" + zone + ", +north +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
-    x,y,z = pyproj.transform(wgs84, proj, lon, lat, dem)
+    if inverse:
+        x,y,z = pyproj.transform(proj, wgs84, inx, iny, dem)
+    else:
+        x,y,z = pyproj.transform(wgs84, proj, inx, iny, dem)
     projected_pts = np.vstack((x,y,z)).T.copy()
     return projected_pts
