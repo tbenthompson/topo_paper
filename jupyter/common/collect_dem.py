@@ -9,6 +9,28 @@ import numpy as np
 
 import download_dem
 
+def get_dem_bounds(lonlat_pts):
+    minlat = np.min(lonlat_pts[:,1])
+    minlon = np.min(lonlat_pts[:,0])
+    maxlat = np.max(lonlat_pts[:,1])
+    maxlon = np.max(lonlat_pts[:,0])
+    latrange = maxlat - minlat
+    lonrange = maxlon - minlon
+    bounds = (
+        minlat - latrange * 0.1,
+        minlon - lonrange * 0.1,
+        maxlat + latrange * 0.1,
+        maxlon + lonrange * 0.1
+    )
+    return bounds
+
+def get_pt_elevations(lonlat_pts, zoom, n_interp = 100):
+    bounds = get_dem_bounds(lonlat_pts)
+    LON, LAT, DEM = collect_dem.get_dem(zoom, bounds, n_dem_interp_pts)
+    return scipy.interpolate.griddata(
+        (LON, LAT), DEM, (lonlat_pts[:,0], lonlat_pts[:,1])
+    )
+
 def get_dem(zoom, bounds, n_width, dest_dir = 'dem_download'):
     api_key = open('../common/mapzenapikey').read()
     if os.path.exists(dest_dir):
