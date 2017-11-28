@@ -1,12 +1,10 @@
 import numpy as np
 from tectosaur.util.geometry import tri_normal
 
-def get_slip_vectors(tri):
+def get_slip_vectors(tri, start_vector = [1, 0, 0]):
     n = tri_normal(tri, normalize = True)
     is_normal_e0 = np.abs(n[0]) >= 1.0
-    if not is_normal_e0:
-        start_vector = [1, 0, 0]
-    else:
+    if is_normal_e0:
         start_vector = [0, 1, 0]
     v1 = np.cross(n, start_vector)
     v1 /= np.linalg.norm(v1)
