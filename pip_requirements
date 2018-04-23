@@ -1,0 +1,17 @@
+attrs
+cloudpickle
+cppimport
+ipdb
+jupyter
+Mako
+matplotlib
+mpi4py
+numpy
+pandas
+pybind11
+pycapnp
+pyopencl
+pyproj
+pytest
+scipy
+uvloop
