@@ -1,12 +1,12 @@
 import numpy as np
 from tectosaur.util.geometry import tri_normal
 
-def get_slip_vectors(tri, start_vector = [1, 0, 0]):
+def get_slip_vectors(tri, vertical = [0, 0, 1]):
     n = tri_normal(tri, normalize = True)
-    is_normal_e0 = np.abs(n[0]) >= 1.0
-    if is_normal_e0:
-        start_vector = [0, 1, 0]
-    v1 = np.cross(n, start_vector)
+    is_normal_vertical = n.dot(vertical) >= 1.0
+    if is_normal_vertical: # this means the fault plane is horizontal, so there is no "strike" and "dip"
+        raise Exception("fault plane is horizontal. strike and dip make no sense")
+    v1 = np.cross(n, vertical)
     v1 /= np.linalg.norm(v1)
     v2 = np.cross(n, v1)
     v2 /= np.linalg.norm(v2)

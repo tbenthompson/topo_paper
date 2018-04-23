@@ -26,12 +26,13 @@ def get_dem_bounds(lonlat_pts):
 
 def get_pt_elevations(lonlat_pts, zoom, n_interp = 100):
     bounds = get_dem_bounds(lonlat_pts)
-    LON, LAT, DEM = collect_dem.get_dem(zoom, bounds, n_dem_interp_pts)
+    LON, LAT, DEM = get_dem(zoom, bounds, n_interp)
     return scipy.interpolate.griddata(
         (LON, LAT), DEM, (lonlat_pts[:,0], lonlat_pts[:,1])
     )
 
 def get_dem(zoom, bounds, n_width, dest_dir = 'dem_download'):
+    print('downloading dem data for bounds = ' + str(bounds) + ' and zoom = ' + str(zoom))
     api_key = open('../common/mapzenapikey').read()
     if os.path.exists(dest_dir):
         shutil.rmtree(dest_dir)

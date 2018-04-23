@@ -17,3 +17,4 @@ cigcdm.egg-info
 *.pos
 *.msh
 *.geo
+*.bak
